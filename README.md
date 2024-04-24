@@ -10,6 +10,12 @@ MediGuide is a web-based application designed to assist users in finding the rig
 4. **Quick Decision-making**: Patients can make informed decisions about their healthcare provider quickly and efficiently.
 5. **Accurate Disease Prediction**: The AI model boasts high accuracy, with predictions achieving around 98.33% accuracy. This ensures that patients receive precise recommendations from medical specialists based on their symptoms, leading to more effective healthcare outcomes.
 
+## Machine Learning Model
+
+Have used the existing symptoms to disease dataset to train the ML model using ensemble learning of 5 classifiers. The input text is first lemmatised after removing additional punctuation and converted into vector embedding using TFIDF vectoriser. This vector is passed to the ensemble learning method, which has hard voting between the Naive Bayes, Random Forest, Logistic Regression, Support Vector Machine, and K Nearest Neighbours classification methods. The model predicts the disease the patient is showing symptoms of with around 98.33% accuracy. These diseases are then grouped according to the right specialisation of doctors. 
+The dataset comprises 24 different diseases, each with 50 symptom descriptions, resulting in 1200 data points. These 24 diseases are divided into 5 classes of doctor specialisations. These five classes are based on research of the specialisations for a particular disease.
+We plan to extend this dataset by collecting actual information from patient histories of various hospital departments and also extend this model to detect a larger number of diseases. 
+
 ## Installation
 1. Clone the repository:
  git clone https://github.com/Shan-Priya96/MediGuide.git 

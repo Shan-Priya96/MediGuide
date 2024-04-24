@@ -3,10 +3,13 @@
 The Specialist Recommendation App is a web-based application designed to assist users in finding the right medical specialist based on their symptoms. Leveraging machine learning algorithms and a comprehensive dataset, the app accurately predicts potential diseases and recommends corresponding specialists.
 
 ## Features
-- **Symptom-to-Disease Prediction**: Utilizes an ensemble learning approach to predict diseases based on input symptoms.
-- **Doctor Specialization Recommendation**: Matches predicted diseases with the appropriate medical specialists.
-- **User-Friendly Interface**: Intuitive web interface for easy symptom input and doctor recommendation.
-- **Agile Development**: Agile development methodology employed for continuous improvement and iteration.
+
+1. **Symptom Input**: Patients can input their symptoms into the simple web interface.
+2. **Personalised Recommendations**: Patients receive recommendations of medical specialists based on the input symptoms.
+3. **Specialisation Filtering**: Patients can filter recommendations based on medical specialisations to find the most relevant healthcare providers.
+4. **Doctor Details**: Patients can view detailed information about recommended doctors, including their names, location, contact information, timings, and ratings.
+5. **Quick Decision-making**: Patients can make informed decisions about their healthcare provider quickly and efficiently.
+6. **Accurate Disease Prediction**: The AI model boasts high accuracy, with predictions achieving around 98.33% accuracy. This ensures that patients receive precise recommendations from medical specialists based on their symptoms, leading to more effective healthcare outcomes.
 
 ## Installation
 1. Clone the repository:

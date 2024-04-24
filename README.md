@@ -1,19 +1,18 @@
-# Specialist Recommendation App
+# MediGuide
 
-The Specialist Recommendation App is a web-based application designed to assist users in finding the right medical specialist based on their symptoms. Leveraging machine learning algorithms and a comprehensive dataset, the app accurately predicts potential diseases and recommends corresponding specialists.
+MediGuide is a web-based application designed to assist users in finding the right medical specialist based on their symptoms. Leveraging machine learning algorithms and a comprehensive dataset, the app accurately predicts potential diseases and recommends corresponding specialists.
 
 ## Features
 
-1. **Symptom Input**: Patients can input their symptoms into the simple web interface.
+1. **Simple Interface**: Patients can input their symptoms into the simple web interface.
 2. **Personalised Recommendations**: Patients receive recommendations of medical specialists based on the input symptoms.
-3. **Specialisation Filtering**: Patients can filter recommendations based on medical specialisations to find the most relevant healthcare providers.
-4. **Doctor Details**: Patients can view detailed information about recommended doctors, including their names, location, contact information, timings, and ratings.
-5. **Quick Decision-making**: Patients can make informed decisions about their healthcare provider quickly and efficiently.
-6. **Accurate Disease Prediction**: The AI model boasts high accuracy, with predictions achieving around 98.33% accuracy. This ensures that patients receive precise recommendations from medical specialists based on their symptoms, leading to more effective healthcare outcomes.
+3. **Doctor Details**: Patients can view detailed information about recommended doctors, including their names, location, contact information, timings, and ratings and can thus find the most relavent healthcare providers.
+4. **Quick Decision-making**: Patients can make informed decisions about their healthcare provider quickly and efficiently.
+5. **Accurate Disease Prediction**: The AI model boasts high accuracy, with predictions achieving around 98.33% accuracy. This ensures that patients receive precise recommendations from medical specialists based on their symptoms, leading to more effective healthcare outcomes.
 
 ## Installation
 1. Clone the repository:
- git clone https://github.com/Shan-Priya96/SpecialistRec.git
+ git clone https://github.com/Shan-Priya96/MediGuide.git 
  2. Install dependencies:
 pip install -r requirements.txt
 3. Run the application:

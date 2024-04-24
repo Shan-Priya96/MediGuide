@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
+import mysql.connector
 from sklearn.feature_extraction.text import TfidfVectorizer
 import joblib  # for loading the model
 app = Flask(__name__)
@@ -18,6 +19,13 @@ infectious_diseases = ['chicken pox', 'dengue', 'malaria', 'pneumonia', 'urinary
 respiratory_medicine = ['bronchial asthma', 'common cold', 'gastroesophageal reflux disease', 'peptic ulcer disease', 'allergy']
 nlp = spacy.load("en_core_web_lg")
 tfidf=joblib.load('a.pkl')
+def get_database_connection():
+    return mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='PASSWORD',
+        database='doc'
+    )
 # Route for the homepage
 @app.route('/')
 def home():
@@ -47,7 +55,52 @@ def submit():
     else:
         result= "General medicine"
     
-    return render_template(f'{result.lower().replace(" ", "_")}.html')
+    dermatology_doctors = get_doctors_by_specialisation(result)
+    print(dermatology_doctors)
+    return render_template(f'{result.lower().replace(" ", "_")}.html', dermatology_doctors=dermatology_doctors)
+@app.route('/register-doctor', methods=['GET', 'POST'])
+def register_doctor():
+    if request.method == 'POST':
+        # Get form data
+        name = request.form['name']
+        location = request.form['location']
+        contact = request.form['contact']
+        timings = request.form['timings']
+        rating = request.form['rating']
+        specialisation = request.form['specialisation']
+        
+        # Insert form data into the database
+        connection = get_database_connection()
+        cursor = connection.cursor()
+        query = "INSERT INTO doctors (name, location, contact, timings, rating, specialisation) VALUES (%s, %s, %s, %s, %s, %s)"
+        cursor.execute(query, (name, location, contact, timings, rating, specialisation))
+        connection.commit()
+        connection.close()
+        
+        # Redirect to homepage after registration
+        return render_template('index.html')
+    else:
+        return render_template('register-doctor.html')
+def get_doctors_by_specialisation(specialisation):
+    # Connect to the MySQL database
+    connection = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='PASSWORD',
+        database='doc'
+    )
+
+    # Execute the query to fetch doctors
+    cursor = connection.cursor()
+    query = "SELECT name, location, contact, timings, rating FROM doctors WHERE specialisation = %s"
+    cursor.execute(query, (specialisation,))
+    doctors = cursor.fetchall()
+
+    # Close the database connection
+    cursor.close()
+    connection.close()
+
+    return doctors
 
 # Dummy function to simulate processing of user input
 def process_input(user_input):

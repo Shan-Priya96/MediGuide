@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Respiratory Medicine Specialists</title>
+    <title>Respiratory medicine Specialists</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .doctor-card {
@@ -11,32 +11,23 @@
 </head>
 <body>
     <div class="container">
-        <h1>Respiratory Medicine Specialists</h1>
+        <h1>Respiratory medicine Specialists</h1>
         <div class="row">
+            {% for doctor in dermatology_doctors %}
             <div class="col-md-6">
                 <div class="card doctor-card">
                     <div class="card-body">
-                        <h5 class="card-title">Dr. James Anderson</h5>
-                        <p class="card-text">Location: 789 Maple St, City</p>
-                        <p class="card-text">Contact: 555-999-0000</p>
-                        <p class="card-text">Timings: Mon-Fri 9am-5pm</p>
-                        <p class="card-text">Rating: 4.6/5</p>
+                        <h5 class="card-title">{{ doctor[0] }}</h5> <!-- Doctor's name -->
+                        <p class="card-text">Location: {{ doctor[1] }}</p> <!-- Location -->
+                        <p class="card-text">Contact: {{ doctor[2] }}</p> <!-- Contact -->
+                        <p class="card-text">Timings: {{ doctor[3] }}</p> <!-- Timings -->
+                        <p class="card-text">Rating: {{ doctor[4] }}</p> <!-- Rating -->
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card doctor-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Dr. Olivia White</h5>
-                        <p class="card-text">Location: 101 Pine St, City</p>
-                        <p class="card-text">Contact: 555-111-2222</p>
-                        <p class="card-text">Timings: Mon-Fri 10am-6pm</p>
-                        <p class="card-text">Rating: 4.9/5</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Add more doctors as needed -->
+            {% endfor %}
         </div>
     </div>
 </body>
 </html>
+

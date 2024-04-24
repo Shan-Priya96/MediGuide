@@ -35,12 +35,6 @@ def home():
 @app.route('/submit', methods=['POST'])
 def submit():
     user_input = request.form['user_input']
-    
-        
-
-        
-    # Assuming here you have some function or code to process user input
-    # and get the result
     disease =l[ model.predict(process_input(user_input))[0]].lower()
     if disease in dermatology:
             result= "Dermatology"
@@ -58,6 +52,7 @@ def submit():
     dermatology_doctors = get_doctors_by_specialisation(result)
     print(dermatology_doctors)
     return render_template(f'doctors.html', dermatology_doctors=dermatology_doctors, result=result)
+
 @app.route('/register-doctor', methods=['GET', 'POST'])
 def register_doctor():
     if request.method == 'POST':
@@ -68,12 +63,13 @@ def register_doctor():
         timings = request.form['timings']
         rating = request.form['rating']
         specialisation = request.form['specialisation']
+        reg_id= request.form['reg_id']
         
         # Insert form data into the database
         connection = get_database_connection()
         cursor = connection.cursor()
-        query = "INSERT INTO doctors (name, location, contact, timings, rating, specialisation) VALUES (%s, %s, %s, %s, %s, %s)"
-        cursor.execute(query, (name, location, contact, timings, rating, specialisation))
+        query = "INSERT INTO doctors (name, location, contact, timings, rating, specialisation, reg_id) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        cursor.execute(query, (name, location, contact, timings, rating, specialisation, reg_id))
         connection.commit()
         connection.close()
         
@@ -81,14 +77,10 @@ def register_doctor():
         return render_template('index.html')
     else:
         return render_template('register-doctor.html')
+
 def get_doctors_by_specialisation(specialisation):
     # Connect to the MySQL database
-    connection = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='PASSWORD',
-        database='doc'
-    )
+    connection = get_database_connection()
 
     # Execute the query to fetch doctors
     cursor = connection.cursor()
@@ -102,7 +94,6 @@ def get_doctors_by_specialisation(specialisation):
 
     return doctors
 
-# Dummy function to simulate processing of user input
 def process_input(user_input):
     list =[]
     for token in nlp(user_input):

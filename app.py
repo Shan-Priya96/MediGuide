@@ -57,7 +57,7 @@ def submit():
     
     dermatology_doctors = get_doctors_by_specialisation(result)
     print(dermatology_doctors)
-    return render_template(f'{result.lower().replace(" ", "_")}.html', dermatology_doctors=dermatology_doctors)
+    return render_template(f'doctors.html', dermatology_doctors=dermatology_doctors, result=result)
 @app.route('/register-doctor', methods=['GET', 'POST'])
 def register_doctor():
     if request.method == 'POST':
